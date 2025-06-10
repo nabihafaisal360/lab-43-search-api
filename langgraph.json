@@ -1,0 +1,11 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "GCS": "./src/GCS_agent/graph.py:graph",
+    "serp": "./src/serp/graph.py:graph",
+    "exa": "./src/exa/graph.py:graph",
+    "firecrawl": "./src/firecrawl_agent/graph.py:graph",
+    "linkup": "./src/linkup_agent/graph.py:graph"
+  },
+  "env": ".env"
+}
