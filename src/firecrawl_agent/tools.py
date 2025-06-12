@@ -82,30 +82,6 @@ def firecrawl_search(query: str) -> str:
         return f"An error occurred while searching the Firecrawl index: {e}"
 
 
-# --- Optional: Define other tools here ---
-# For example, a tool to scrape a specific URL using FirecrawlLoader (different from search)
-# from langchain_firecrawl import FirecrawlLoader
-#
-# @tool
-# def firecrawl_scrape_url(url: str) -> str:
-#     """Scrapes the content of a single web page URL using Firecrawl."""
-#     print(f"\n--- Calling Firecrawl Scrape Tool ---")
-#     print(f"URL: '{url}'")
-#     try:
-#         # FirecrawlLoader automatically uses FIRECRAWL_API_KEY from the environment
-#         loader = FirecrawlLoader(url=url, mode="scrape") # mode="scrape" gets full text
-#         documents = loader.load()
-#         if not documents:
-#             print(f"Firecrawl Scrape: No content scraped from {url}")
-#             return f"Could not retrieve content from {url}"
-#
-#         # Return the page content (usually the first document)
-#         # You might want to add metadata or limit the length for RAG context
-#         print(f"Firecrawl Scrape: Successfully scraped content from {url}")
-#         return documents[0].page_content #[:4000] # Example: Limit content length
-#     except Exception as e:
-#         print(f"Error executing Firecrawl Scrape for {url}: {e}")
-#         return f"An error occurred while scraping {url}: {e}"
 
 
 # It's often helpful to export a list of all tools from this file

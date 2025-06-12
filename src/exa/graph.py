@@ -10,12 +10,6 @@ from exa.state import AgentState
 
 import json
 
-# State definition is now imported from react_agent.state
-# class AgentState(TypedDict):
-#     messages: Annotated[Sequence[BaseMessage], ...]  # We'll set reducer below
-
-# from langgraph.graph.message import add_messages
-# AgentState.__annotations__["messages"] = Annotated[Sequence[BaseMessage], add_messages]
 
 # tool lookup
 tools_by_name = {search_tool.name: search_tool}
@@ -44,7 +38,10 @@ def tool_node(state: AgentState):
         tool_result = tools_by_name[tool_name].invoke(tool_args)
 
         # Ensure content is a string for ToolMessage
-        if isinstance(tool_result, (list, dict)):
+        # If tool_result is a SearchResponse object, access its data attribute
+        if hasattr(tool_result, 'data') and isinstance(tool_result.data, (list, dict)):
+            content_str = json.dumps(tool_result.data)
+        elif isinstance(tool_result, (list, dict)):
             content_str = json.dumps(tool_result)
         else:
             content_str = str(tool_result)
